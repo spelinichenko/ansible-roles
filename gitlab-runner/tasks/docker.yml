@@ -1,0 +1,33 @@
+---
+- name: "Install Docker for GitLab Runner"
+  ansible.builtin.include_role:
+    name: docker
+
+- name: "Pulling GitLab Runner image from Docker Hub"
+  docker_image:
+    name: "{{ docker.image.name }}"
+    tag: "{{ docker.image.tag }}"
+    source: pull
+
+- name: "Create configuration diriectory"
+  ansible.builtin.file:
+    path: /srv/gitlab-runner/
+    state: directory
+    owner: vagrant
+    group: vagrant
+    recurse: true
+    mode: '0644'
+
+- name: "Create configuration file"
+  ansible.builtin.file:
+    path: /src/gitlab-runner/config
+    owner: vagrant
+    group: vagrant
+    
+
+
+- name: "Start Docker container"
+  docker_container:
+    name: "{{ docker.container.name }}"
+    image: "{{ docker.image.name }}"
+    state: started

@@ -1,2 +1,7 @@
 ---
-# vars file for gitlab-runner
+docker:
+  image:
+    name: gitlab/gitlab-runner
+    tag: latest
+  container:
+    name: gitlab-runner

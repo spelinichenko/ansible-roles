@@ -1,2 +1,4 @@
 ---
-# tasks file for gitlab-runner
+- name: "Install GitLab Runner in {{ runner_type }}"
+  include_tasks: "{{ runner_type }}.yml"
+  
