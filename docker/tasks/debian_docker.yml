@@ -1,0 +1,3 @@
+- name: "Print MSG"
+  ansible.builtin.debug:
+    msg: "Debian"

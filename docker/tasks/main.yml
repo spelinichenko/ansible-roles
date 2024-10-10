@@ -1,0 +1,14 @@
+---
+# tasks file for docker
+- name: Install Docker for CentOS
+  include_tasks: centos_docker.yml
+  when: ansible_facts['distribution'] == "CentOS"
+
+- name: Install Docker for Debian
+  include_tasks: debian_docker.yml
+  when: ansible_facts['distribution'] == "Debian"
+
+- name: Install Docker for Ubuntu
+  include_tasks: ubuntu_docker.yml
+  when: ansible_facts['distribution'] == "Ubuntu"
+
